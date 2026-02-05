@@ -8,5 +8,5 @@
 
 # Vagrant VMs, config files for VM in the root folder (experimental)
 **.vagrant/
-Vagrantfile
-provision/
+/Vagrantfile
+/provision/
