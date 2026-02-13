@@ -1,0 +1,12 @@
+[Unit]
+Description=Apply custom firewalld policy
+After=network-online.target firewalld.service
+Wants=network-online.target firewalld.service
+
+[Service]
+Type=oneshot
+ExecStart=/etc/firewalld-init.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
