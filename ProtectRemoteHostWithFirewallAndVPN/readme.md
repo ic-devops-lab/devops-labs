@@ -65,25 +65,22 @@ Administrative access available only via authenticated VPN membership.
 ## Repository Structure
 
     lab-name/
-    ├── README.md
-    ├── runbook.md
     ├── docs/
-    │   ├── architecture.md
-    │   └── images/
-    ├── scripts/
+    │   ├── step-by-step-runbook.md
+    │   └── images
+    ├── examples/
     │   ├── firewalld/
     │   │   ├── phase1/
     │   │   └── phase2/
     │   └── openvpn/
-    ├── examples/
-    └── diagrams/
+    └──README.md
 
 ------------------------------------------------------------------------
 
 ## How to Use This Repository
 
 1.  Follow the runbook step‑by‑step.
-2.  Copy scripts from `scripts/` rather than rewriting them manually.
+2.  Copy scripts from `examples/` rather than rewriting them manually.
 3.  Validate after each phase before continuing.
 4.  Reboot once at the end to confirm persistence.
 
@@ -107,7 +104,6 @@ It does not cover:
 ## Extensions / Next Ideas
 
 -   Replace OpenVPN with WireGuard and compare operational complexity
--   Add Fail2Ban for additional protection
 -   Mirror firewall policy at provider level
 -   Convert the host into a bastion/jump host pattern
 -   Automate everything with configuration management
