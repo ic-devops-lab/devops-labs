@@ -31,4 +31,4 @@ jobs:
 
       - name: Deploy site to AWS S3
         run: |
-          aws s3 sync ./examples/site s3://{{ secrets.S3_BUCKET }}/ --delete
+          aws s3 sync ./examples/site s3://${{ secrets.S3_BUCKET }}/ --delete
