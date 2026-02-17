@@ -281,6 +281,7 @@ Create an OIDC provider for GitHub Actions:
 ```bash
 aws iam create-open-id-connect-provider   --url "https://token.actions.githubusercontent.com"   --client-id-list "sts.amazonaws.com"   --thumbprint-list "6938fd4d98bab03faadb97b34396831e3780aea1"
 ```
+> "6938fd4d98bab03faadb97b34396831e3780aea1" is a cryptographic fingerprint of GitHub's SSL certificate. It's predefined and published by GitHub. AWS uses this to verify that tokens actually came from GitHub's authentic server and haven't been forged. It's like checking an ID before trusting someone's credentials.
 
 Expected result:
 - Command returns an ARN similar to:
