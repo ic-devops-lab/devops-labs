@@ -365,6 +365,19 @@ aws iam put-role-policy   --role-name "$ROLE_NAME"   --policy-name "S3DeployToSi
 Expected result:
 - Role has the required S3 permissions.
 
+Run locally:
+```
+aws iam get-role-policy \
+  --role-name $ROLE_NAME \
+  --policy-name "S3DeployToSingleBucket" \
+  --query PolicyDocument \
+  --output json
+```
+
+Look for:
+- Resource: "arn:aws:s3:::<YOUR_BUCKET>" for s3:ListBucket
+- Resource: "arn:aws:s3:::<YOUR_BUCKET>/*" for object writes
+
 ## Step 4 — Update workflow to use OIDC (no AWS keys)
 
 Create `.github/workflows/deploy-phase2-oidc.yml`:

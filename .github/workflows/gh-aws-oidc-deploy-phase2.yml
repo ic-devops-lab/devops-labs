@@ -30,9 +30,12 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           role-session-name: gha-oidc-s3-deploy
 
-      - name: Who am I?
-        run: aws sts get-caller-identity
+      - name: Who am I? and debug
+        run: |
+          aws sts get-caller-identity
+          echo "Bucket: ${{ secrets.S3_BUCKET }}"
+          aws s3api head-bucket --bucket "${{ secrets.S3_BUCKET }}"
 
       - name: Deploy site to AWS S3
         run: |
-          aws s3 sync ./examples/site s3://${{ secrets.S3_BUCKET }}/ --delete
+          aws s3 sync ./examples/site_p2 s3://${{ secrets.S3_BUCKET }}/ --delete
