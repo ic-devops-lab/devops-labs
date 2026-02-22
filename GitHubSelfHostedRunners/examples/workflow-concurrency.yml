@@ -1,0 +1,21 @@
+name: self-hosted-concurrency-demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job_a:
+    runs-on: [self-hosted, linux, x64, org, ci]
+    steps:
+      - run: |
+          echo "A starting"
+          sleep 30
+          echo "A done"
+
+  job_b:
+    runs-on: [self-hosted, linux, x64, org, ci]
+    steps:
+      - run: |
+          echo "B starting"
+          sleep 30
+          echo "B done"

@@ -1,0 +1,19 @@
+name: self-hosted-smoke-org
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: [self-hosted, linux, x64, org, ci]
+    steps:
+      - name: Host identity
+        run: |
+          whoami
+          hostname
+          uname -a
+          lsb_release -a || true
+      - name: Resources
+        run: |
+          df -h
+          free -h

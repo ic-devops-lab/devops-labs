@@ -1,0 +1,21 @@
+name: GitHub Self-hosted Runner Smoke Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - name: Who am I
+        run: |
+          whoami
+          uname -a
+          lsb_release -a || true
+      - name: Disk and memory
+        run: |
+          df -h
+          free -h
+
+      - name: Echo
+        run: echo "Self-hosted runner test successfully passed!"
