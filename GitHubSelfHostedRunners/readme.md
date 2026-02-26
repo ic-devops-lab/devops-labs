@@ -16,7 +16,7 @@ The setup supports:
 -   Service-managed lifecycle via systemd
 -   Explicit scheduling using labels
 
-📖 Article: *(link to be added)*
+📖 Article: https://dev.to/iuri_covaliov/owning-your-github-actions-ci-moving-to-self-hosted-runners-5ee0
 
 ------------------------------------------------------------------------
 
