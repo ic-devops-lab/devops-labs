@@ -3,7 +3,7 @@ set -euo pipefail
 
 # ====== EDIT THIS ======
 # GITLAB_FQDN="gitlab.example.com"
-GITLAB_FQDN="gitlab.icovaliov.com"
+GITLAB_FQDN="gitlab.yourdomain.com"
 # =======================
 
 export DEBIAN_FRONTEND=noninteractive

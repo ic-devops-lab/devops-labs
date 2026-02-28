@@ -7,7 +7,7 @@ This is a **reproducible runbook** for recreating the lab:
 
 > Notes:
 > - This is a lab guide, not a production hardening guide.
-> - Examples use `gitlab.icovaliov.com` and VM IP `192.168.56.101`. Replace with your values.
+> - Examples use `gitlab.yourdomain.com` and VM IP `192.168.56.101`. Replace with your values.
 
 ---
 
@@ -129,7 +129,7 @@ vagrant provision
 In `/etc/gitlab/gitlab.rb`:
 
 ```ruby
-external_url "https://gitlab.icovaliov.com"
+external_url "https://gitlab.yourdomain.com"
 
 nginx['enable'] = false
 
@@ -195,7 +195,7 @@ upstream gitlab_vm {
 
 server {
   listen 80;
-  server_name gitlab.icovaliov.com;
+  server_name gitlab.yourdomain.com;
 
   client_max_body_size 0;
 
@@ -226,7 +226,7 @@ sudo systemctl reload nginx
 Test locally (before DNS) using Host header:
 
 ```bash
-curl -I -H "Host: gitlab.icovaliov.com" http://127.0.0.1/users/sign_in
+curl -I -H "Host: gitlab.yourdomain.com" http://127.0.0.1/users/sign_in
 ```
 
 ---
@@ -235,12 +235,12 @@ curl -I -H "Host: gitlab.icovaliov.com" http://127.0.0.1/users/sign_in
 
 At your registrar, create:
 
-- `A` record: `gitlab.icovaliov.com` → `<host public IP>`
+- `A` record: `gitlab.yourdomain.com` → `<host public IP>`
 
 Verify from your laptop:
 
 ```bash
-dig gitlab.icovaliov.com +short
+dig gitlab.yourdomain.com +short
 ```
 
 ---
@@ -257,7 +257,7 @@ sudo apt install -y certbot python3-certbot-nginx
 Request a cert:
 
 ```bash
-sudo certbot --nginx -d gitlab.icovaliov.com
+sudo certbot --nginx -d gitlab.yourdomain.com
 ```
 
 Choose:
@@ -266,7 +266,7 @@ Choose:
 Verify:
 
 ```bash
-curl -I https://gitlab.icovaliov.com/users/sign_in
+curl -I https://gitlab.yourdomain.com/users/sign_in
 ```
 
 Test renewal:
@@ -289,7 +289,7 @@ sudo cat /etc/gitlab/initial_root_password
 
 Then open:
 
-- `https://gitlab.icovaliov.com`
+- `https://gitlab.yourdomain.com`
 
 Login:
 - user: `root`
@@ -339,7 +339,7 @@ At your registrar:
 - Replace nameservers with Cloudflare nameservers
 
 In Cloudflare DNS:
-- Ensure `gitlab.icovaliov.com` record exists
+- Ensure `gitlab.yourdomain.com` record exists
 - Proxy status: **Proxied (orange cloud)**
 
 ---
@@ -358,7 +358,7 @@ This works well because your origin already has a valid Let’s Encrypt certific
 Cloudflare Zero Trust dashboard:
 - **Access → Applications → Add application**
 - Choose **Self-hosted**
-- Domain: `gitlab.icovaliov.com`
+- Domain: `gitlab.yourdomain.com`
 
 Create an **Allow** policy (start strict: only you).
 
@@ -383,7 +383,7 @@ Then in your GitLab Access policy:
 
 Open an incognito window:
 
-- `https://gitlab.icovaliov.com`
+- `https://gitlab.yourdomain.com`
 
 Expected:
 - Cloudflare Access login prompt
