@@ -1,0 +1,53 @@
+stages:
+  - smoke
+
+default:
+  tags:
+    - private
+    - docker
+
+smoke:runner-info:
+  stage: smoke
+  image: alpine:3.20
+  script:
+    - set -eu
+    - echo "== Runner context =="
+    - echo "Runner description: ${CI_RUNNER_DESCRIPTION}"
+    - echo "Runner tags: ${CI_RUNNER_TAGS}"
+    - echo "Project: ${CI_PROJECT_PATH}"
+    - echo "Pipeline: ${CI_PIPELINE_ID}"
+    - echo "Job: ${CI_JOB_ID}"
+    - echo
+    - echo "== System information =="
+    - uname -a
+    - cat /etc/os-release
+    - echo
+    - echo "== Network information =="
+    - ip -4 a || true
+    - ip route || true
+
+smoke:gitlab-reachability:
+  stage: smoke
+  image: alpine:3.20
+  script:
+    - set -eu
+    - apk add --no-cache curl
+    - echo "Checking GitLab reachability through CI_SERVER_URL=${CI_SERVER_URL}"
+    - curl -fsS -o /dev/null -D - "${CI_SERVER_URL}/users/sign_in"
+    - echo "GITLAB_OK"
+
+smoke:checkout-proof:
+  stage: smoke
+  image: alpine:3.20
+  variables:
+    GIT_STRATEGY: fetch
+  script:
+    - set -eu
+    - apk add --no-cache git
+    - echo "Checkout directory: ${CI_PROJECT_DIR}"
+    - test -d .git
+    - git --version
+    - echo "Current commit:"
+    - git rev-parse --short HEAD
+    - echo "Recent history:"
+    - git log --oneline -n 3
