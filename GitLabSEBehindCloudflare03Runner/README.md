@@ -4,7 +4,12 @@ This lab extends the earlier **GitLab Behind Cloudflare Zero Trust** setup by ad
 
 ## Article
 
-Add the Dev.to article link here after publishing.
+📖 Full article:
+- https://dev.to/iuri_covaliov/gitlab-se-behind-cloudflare-zero-trust-part-3-private-ci-runner-4a6b
+
+📖 Previous articles:
+- https://dev.to/iuri_covaliov/self-hosting-gitlab-behind-cloudflare-zero-trust-a-practical-devops-lab-18ce
+- https://dev.to/iuri_covaliov/gitlab-behind-cloudflare-tunnel-removing-inbound-ssh-exposure-217m
 
 ## What this lab demonstrates
 
