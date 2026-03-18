@@ -14,5 +14,6 @@
 ### CI/CD
 - [Self-hosted GitHub Actions Runners on Linux Server](./GitHubSelfHostedRunners/readme.md)
 - [Replacing Static AWS Keys in GitHub Actions with AWS OIDC](./GitHubActionswithAWSOIDC/readme.md)
+- [GitLab CI Dependency Caching Lab](./GitLabCIPipelinesWithDependencyCaching/readme.md)
 
 ---

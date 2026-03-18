@@ -1,0 +1,50 @@
+# This piplene is for the Stage 1 of the lab
+# Uncomment the cache configuration to enable caching for the Stage 2 of the lab
+
+stages:
+stages:
+  - prepare
+  - quality
+  - test
+
+# .cache:
+#   cache:
+#     key:
+#       files:
+#         - requirements.txt
+#     paths:
+#       - .cache/pip
+#     policy: pull-push
+
+.default_python:
+  image: python:3.12
+  variables:
+    # PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+    PYTHONPATH: "$CI_PROJECT_DIR"
+
+install-deps:
+  extends:
+    # - .cache
+    - .default_python
+  stage: prepare
+  script:
+    - python --version
+    - time pip install -r requirements.txt
+
+lint:
+  extends:
+    # - .cache
+    - .default_python
+  stage: quality
+  script:
+    - time pip install -r requirements.txt
+    - python -m compileall .
+
+test:
+  extends:
+    # - .cache
+    - .default_python
+  stage: test
+  script:
+    - time pip install -r requirements.txt
+    - pytest
