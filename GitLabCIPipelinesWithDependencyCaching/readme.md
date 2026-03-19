@@ -16,7 +16,7 @@ Instead of assuming caching always improves speed, this lab shows:
 
 Full architecture walkthrough and explanation:
 
-👉
+👉 https://dev.to/iuri_covaliov/gitlab-ci-caching-didnt-speed-up-my-pipeline-heres-why-21o3
 
 ---
 
